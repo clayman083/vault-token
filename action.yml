@@ -1,0 +1,22 @@
+name: 'Vault Token'
+description: 'Authenticate in Hashicorp Vault by AppRole credentials'
+inputs:
+  vault_addr:
+    description: 'Vault server address'
+    required: true
+  role_id:
+    description: 'AppRole role id'
+    required: true
+  secret_id:
+    description: 'AppRole secret id'
+    required: true
+outputs:
+  token:
+    description: 'Vault token'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.vault_addr }}
+    - ${{ inputs.role_id }}
+    - ${{ inputs.secret_id }}
